@@ -19,43 +19,103 @@ public class ListNode {
     }
 
 
-    public static void main(String[] args) {
-        ListNode head = new ListNode();
-        for(int i=0;i<5;i++){
-            insertLL(head,i);
-        }
-        printLL(head);
-        System.out.println(12345 / 100); // 1234 / 100 -> 123.45
-        System.out.println(99 % 100); // random %99
-        System.out.println(100 % 100); // random 100 / 100 -> 0
-        System.out.println(45 % 10 ); //
-        9+9
-    }
+
 
     private static ListNode insertLL(ListNode head, int i) {
-        ListNode newNode= new ListNode(i); // 1. make a new node
+        ListNode newNode = new ListNode(i); // 1. make a new node
         if(head == null){
             return newNode; //2. if head is NULL return new Node
         }
         ListNode curr = head;
-        while(curr != null){
+        while(curr.next != null){
             curr = curr.next;
         }
-        curr = newNode; // ???
-//        null = "string some string";
-
-//        1 -> 2 3 4 null
-
+        curr.next = newNode;
 
         return head;
-        }
+    }
 
-        private static void printLL(ListNode head) {
-            ListNode temp = head;
-            while (temp != null) {
-                System.out.println("Node Value -> " + temp.val);
-                temp = temp.next;
+
+    private static void printLL(ListNode head) {
+        ListNode temp = head;
+        while (temp != null) {
+            System.out.print(" -> " + temp.val);
+            temp = temp.next;
+        }
+        System.out.println("");
+
+    }
+
+    private static ListNode deleteElementFromLinkedList(ListNode head, int val){
+
+        ListNode curr = head;
+        if(curr.val ==val){
+            head=curr.next;
+            return head;
+        }
+        while(curr !=null && curr.next !=null){
+          if(curr.next.val== val){
+              curr.next=curr.next.next;
+          }
+          else{
+              curr=curr.next;
+          }
+        }
+        return head;
+    }
+
+    public static ListNode reverseLL(ListNode head){
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+
+        }
+        return prev;
+    }
+
+    public static ListNode getMiddleNode(ListNode head){
+        int count=0;
+        if(head == null || head.next==null){
+            return head;
+        }
+        else{
+            ListNode currNode=head;
+            while(currNode.next != null){
+                count++;
+                currNode=currNode.next;
             }
-
+            currNode=head;
+            int mid = count/2+1;
+            while(currNode !=null) {
+              mid=mid-1;
+              if(mid==0){
+                  break;
+              }
+              currNode=currNode.next;
+            }
+            return currNode;
         }
+    }
+
+    public static void main(String[] args) {
+        ListNode head = null;
+        for(int i=0;i<5;i++){
+            head = insertLL(head,i);
+        }
+        printLL(head);
+        //deleteElementFromLinkedList(head,2 );
+        //System.out.println("Post deletion");
+        //printLL(head);
+        System.out.println("Reverse");
+        head = reverseLL(head);
+        printLL(head);
+        head = getMiddleNode(head);
+        System.out.println("Middle "+ head.val);
+    }
+
 }
