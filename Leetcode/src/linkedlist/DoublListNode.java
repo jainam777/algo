@@ -19,22 +19,21 @@ public class DoublListNode {
         this.next = next;
         this.pre = pre;
     }
-public static DoublListNode insertIntoDLL(DoublListNode head, int i){
-    if(head==null){
-        return  new DoublListNode(i,null,null);
-    }
-    else{
-        DoublListNode newNode= new DoublListNode(i);
-        DoublListNode currNode=head;
-        while(currNode.next!=null){
-            currNode=currNode.next;
+    public static DoublListNode insertIntoDLL(DoublListNode head, int i){
+        DoublListNode newNode = new DoublListNode(i,null,null);
+        if(head==null){
+            return  new DoublListNode(i,null,null);
         }
-        currNode.next=newNode;
-        newNode.pre=currNode;
-
-        return head;
+        else{
+            DoublListNode currNode=head;
+            while(currNode.next!=null){
+                currNode=currNode.next;
+            }
+            currNode.next=newNode;
+            newNode.pre=currNode;
+            return head;
+        }
     }
-}
 
     public static DoublListNode convertArrayIntoDL(DoublListNode head, int[] arr){
         {
@@ -66,29 +65,28 @@ public static void printDL(DoublListNode head){
 public static DoublListNode reverseLL(DoublListNode head){
         DoublListNode previous = null;
         DoublListNode present = head;
-        DoublListNode next = null;
+        DoublListNode next ;
         while(present != null){
-            next = present.next;
-            present.next = previous;
-            previous = present;
-            present = next;
-
+            DoublListNode temp = present.next;
+            present.next= previous;
+            previous = temp;
+            head = previous;
+            present=temp;
         }
-        return previous;
+        return head;
 }
 
 
 
     public static void main(String[] args) {
-        DoublListNode head= new DoublListNode();
+        DoublListNode head = null;
         int[] arr= {4,6,8,1,5};
-        DoublListNode node = convertArrayIntoDL(head,arr);
-        System.out.println("Arry to LL");
-        printDL(node);
-
+        //DoublListNode node = convertArrayIntoDL(head,arr);
+        //System.out.println("Arry to LL");
+        //printDL(node);
         int i=0;
         while(i!=5){
-            insertIntoDLL(head,++i);
+            head =  insertIntoDLL(head,++i);
         }
         System.out.println("Normal");
         printDL(head);
