@@ -25,7 +25,7 @@ public class MergeTwoArray {
     public static void printArr(int[] arr1){
         int i=0;
       while(i<arr1.length) {
-          System.out.println(arr1[i++] + "-");
+          System.out.print(arr1[i++] + "-");
       }
     }
 

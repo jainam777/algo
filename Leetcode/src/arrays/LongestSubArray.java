@@ -2,14 +2,23 @@ package arrays;
 
 public class LongestSubArray {
     public static void main(String[] args) {
-        int arr[] = {2,7,4,1,9};
-        int target=10;
+        int arr[] = {-1, 1, 1};
+        int target=1;
         int ans = longestSubArray(arr,target);
         System.out.println("O/P:- "+ans);
 
     }
     public static int longestSubArray(int[] arr,int target) {
-       // int arr[] = {2,7,4,1,9};
-        return arr[0];
+        int len=0;
+        for(int i=0;i<arr.length;i++){
+            int sum=0;
+            for (int j=i;j<arr.length;j++){
+                sum +=arr[j];
+                if(sum==target){
+                    len= Math.max(len, j-i+1);
+                }
+            }
+        }
+        return len;
     }
 }

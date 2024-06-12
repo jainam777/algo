@@ -53,8 +53,8 @@ public class Union {
 
 
     public  static  void main(String args[]){
-    int[] arr1={1,2,3,7};
-    int[] arr2={2,3,4,8};
+        int arr1[] = { 1, 3, 5, 7, 11 };
+        int arr2[] = { 2, 4, 6, 8, 10 };
     int[] ans= MergeTwoArray.mergedArray(arr1,arr2);
     //int[] val= removeDuplicates(ans);
         printArr(ans);

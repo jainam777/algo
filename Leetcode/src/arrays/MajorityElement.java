@@ -14,7 +14,6 @@ public class MajorityElement {
     }
 
     public static int majorityElement(int[] nums) {
-        int countofMid = nums.length/2;
         Map<Integer,Integer> map = new HashMap<>();
         for(int i=0;i< nums.length;i++){
             if(map.containsKey(nums[i])){
@@ -25,7 +24,7 @@ public class MajorityElement {
 
         }
         for (Map.Entry<Integer,Integer> entry: map.entrySet()){
-            if(entry.getValue()>countofMid){
+            if(entry.getValue()>nums.length/2){
                 return entry.getKey();
             }
         }
